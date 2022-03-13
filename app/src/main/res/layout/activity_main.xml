@@ -112,7 +112,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/instaImage"
                 android:layout_width="200dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="5dp"
@@ -121,7 +121,7 @@
                 app:srcCompat="@drawable/insta" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/googleImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -129,7 +129,7 @@
                 app:srcCompat="@drawable/google" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/faceImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

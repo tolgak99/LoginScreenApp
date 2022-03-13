@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -13,6 +15,7 @@ import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.regex.Matcher;
@@ -35,6 +38,13 @@ public class MainActivity extends AppCompatActivity {
         userNameInput = (EditText) findViewById(R.id.userNameInput);
         passInput = (EditText) findViewById(R.id.passwordInput);
 
+        Button loginButton = (Button) findViewById(R.id.loginButton);
+        TextView txtRegister = (TextView) findViewById(R.id.createAccountText);
+
+        ImageView instaButton = (ImageView) findViewById(R.id.instaImage);
+        ImageView faceButton = (ImageView) findViewById(R.id.faceImage);
+        ImageView googleButton = (ImageView) findViewById(R.id.googleImage);
+
         userNameInput.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_user, 0, 0, 0);
         passInput.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_pass, 0, 0, 0);
 
@@ -51,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
                {
                    userNameInput.setTextColor(Color.parseColor("White"));
                    userNameInput.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_pass, 0, 0, 0);
-
                }
             }
         });
@@ -69,12 +78,10 @@ public class MainActivity extends AppCompatActivity {
                 {
                     passInput.setTextColor(Color.parseColor("White"));
                     passInput.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_pass, 0, 0, 0);
-
                 }
             }
         });
 
-        Button loginButton = (Button) findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,10 +92,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        TextView txtRegister = (TextView) findViewById(R.id.createAccountText);
-        txtRegister .setOnClickListener(new View.OnClickListener() {
+        txtRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 // Register Page
+            }
+        });
+
+        faceButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Uri uri = Uri.parse("http://www.facebook.com");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
+        instaButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Uri uri = Uri.parse("http://www.instagram.com");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
+        googleButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Uri uri = Uri.parse("http://www.google.com");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
 
