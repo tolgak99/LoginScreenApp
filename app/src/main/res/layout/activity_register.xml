@@ -94,17 +94,17 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Don't have account."
+                android:text="If you have account"
                 android:textColor="#FFFFFF"
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/createAccountText"
+                android:id="@+id/loginAccountText"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_marginLeft="5dp"
                 android:clickable="true"
-                android:text="Create Account"
+                android:text="Login Account"
                 android:textColor="#F44336" />
 
         </LinearLayout>

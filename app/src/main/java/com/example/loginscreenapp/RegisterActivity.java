@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
         rePassInput = (EditText) findViewById(R.id.rePasswordInput);
 
         Button registerButton = (Button) findViewById(R.id.registerButton);
+        TextView txtRegister = (TextView) findViewById(R.id.loginAccountText);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +100,13 @@ public class RegisterActivity extends AppCompatActivity {
                     rePassInput.setTextColor(Color.parseColor("White"));
                     rePassInput.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_pass, 0, 0, 0);
                 }
+            }
+        });
+
+        txtRegister.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent toRegisterIntent = new Intent(RegisterActivity.this, MainActivity.class);
+                startActivity(toRegisterIntent);
             }
         });
     }

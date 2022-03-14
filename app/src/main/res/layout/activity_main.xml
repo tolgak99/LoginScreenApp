@@ -65,8 +65,26 @@
             app:layout_constraintTop_toBottomOf="@+id/loginUserNameInput" />
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="390dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <CheckBox
+                android:id="@+id/checkBox2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Remember Me"
+                android:textColor="#F44336" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="220dp"
+            android:layout_height="18dp"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="500dp"
             android:orientation="horizontal"
@@ -74,28 +92,30 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Don't have account."
-                android:textColor="#FFFFFF"
-                android:textSize="12sp" />
+                android:layout_weight="1"
+                android:text="Forget Password?"
+                android:textColor="#FFFFFF" />
 
             <TextView
-                android:id="@+id/createAccountText"
+                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginLeft="5dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:clickable="true"
-                android:text="Create Account"
-                android:textColor="#F44336" />
+                android:minHeight="48dp"
+                android:text="Reset Password"
+                android:textColor="#F44336"
+                tools:ignore="TouchTargetSizeCheck" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="199dp"
             android:layout_height="47dp"
-            android:layout_marginBottom="33dp"
+            android:layout_marginBottom="80dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -140,6 +160,44 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/logo" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="411dp"
+            android:layout_height="44dp"
+            android:maxHeight="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:layout_width="232dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="130dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="104dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Don't have account."
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/createAccountText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="5dp"
+                    android:clickable="true"
+                    android:text="Create Account"
+                    android:textColor="#F44336" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

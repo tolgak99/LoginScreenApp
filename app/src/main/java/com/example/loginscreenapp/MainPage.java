@@ -28,7 +28,7 @@ public class MainPage extends AppCompatActivity {
         userName = loginIntent.getStringExtra("username");
         userNameText = (TextView) findViewById(R.id.userNameText);
 
-        userNameText.setText("Merhaba " + userName + "\n Sektöre HOŞGELDİN!");
+        userNameText.setText(userName);
         MediaPlayer ring= MediaPlayer.create(MainPage.this,R.raw.welcome);
         ring.start();
     }
