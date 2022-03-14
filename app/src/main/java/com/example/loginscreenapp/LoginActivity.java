@@ -16,7 +16,7 @@ import android.widget.TextView;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     boolean mailValid;
     boolean passValid;
@@ -28,12 +28,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         hideDeafultAppBar();
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
-        userNameInput = (EditText) findViewById(R.id.loginUserNameInput);
-        passInput = (EditText) findViewById(R.id.loginPasswordInput);
+        userNameInput = (EditText) findViewById(R.id.registerUserNameInput);
+        passInput = (EditText) findViewById(R.id.registerPasswordInput);
 
-        Button loginButton = (Button) findViewById(R.id.loginButton);
+        Button loginButton = (Button) findViewById(R.id.registerButton);
         TextView txtRegister = (TextView) findViewById(R.id.createAccountText);
 
         ImageView instaButton = (ImageView) findViewById(R.id.instaImage);
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     userNameInput.setTextColor(Color.parseColor("White"));
-                    userNameInput.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_user, 0, 0, 0);
+                    userNameInput.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_pass, 0, 0, 0);
                 }
             }
         });
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 if (!passValid)
                 {
                     passInput.setTextColor(Color.parseColor("Red"));
-                    passInput.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_pass, 0, R.drawable.ic_action_error, 0);
+                    passInput.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_user, 0, R.drawable.ic_action_error, 0);
                 }
                 else
                 {
@@ -80,18 +80,18 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (passValid && mailValid) {
-                    Intent toMainIntent = new Intent(MainActivity.this, MainPage.class);
-                    toMainIntent.putExtra("username", userNameInput.getText().toString());
-                    startActivity(toMainIntent);
-                }
+                //if (passValid && mailValid)
+                //{
+                Intent toMainIntent = new Intent(LoginActivity.this, MainPage.class);
+                toMainIntent.putExtra("username",userNameInput.getText().toString());
+                startActivity(toMainIntent);
+                //}
             }
         });
 
         txtRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent toRegisterIntent = new Intent(MainActivity.this, RegisterActivity.class);
-                startActivity(toRegisterIntent);
+                // Register Page
             }
         });
 
@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
     void hideDeafultAppBar()
@@ -136,5 +137,6 @@ public class MainActivity extends AppCompatActivity {
         Matcher matcher = Pattern.compile("((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{4,20})").matcher(pass);
         return matcher.matches();
     }
+
 
 }
