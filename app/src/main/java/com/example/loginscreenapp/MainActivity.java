@@ -2,16 +2,23 @@ package com.example.loginscreenapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,10 +42,13 @@ public class MainActivity extends AppCompatActivity {
 
         Button loginButton = (Button) findViewById(R.id.loginButton);
         TextView txtRegister = (TextView) findViewById(R.id.createAccountText);
+        TextView resetPass = (TextView) findViewById(R.id.resetPasswordButton);
+        TextView mailError = (TextView) findViewById(R.id.mailErrorText);
+        TextView passError = (TextView) findViewById(R.id.passwordErrorText);
 
         ImageView instaButton = (ImageView) findViewById(R.id.instaImage);
-        ImageView faceButton = (ImageView) findViewById(R.id.faceImage);
-        ImageView googleButton = (ImageView) findViewById(R.id.googleImage);
+        ImageView linkedinButton = (ImageView) findViewById(R.id.linkedinImage);
+        ImageView websiteButton = (ImageView) findViewById(R.id.websiteImage);
 
         userNameInput.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_user, 0, 0, 0);
         passInput.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_pass, 0, 0, 0);
@@ -51,11 +61,14 @@ public class MainActivity extends AppCompatActivity {
                 {
                     userNameInput.setTextColor(Color.parseColor("Red"));
                     userNameInput.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_user, 0, R.drawable.ic_action_error, 0);
+                    mailError.setText("Must Be Mail Type");
+                    mailError.setVisibility(View.VISIBLE);
                 }
                 else
                 {
                     userNameInput.setTextColor(Color.parseColor("White"));
                     userNameInput.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_user, 0, 0, 0);
+                    mailError.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -68,11 +81,14 @@ public class MainActivity extends AppCompatActivity {
                 {
                     passInput.setTextColor(Color.parseColor("Red"));
                     passInput.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_pass, 0, R.drawable.ic_action_error, 0);
+                    passError.setText("Must contains\nUppercase(A-Z)\nLowercase(a-z)\nNumber(0-9)\nCharacter!");
+                    passError.setVisibility(View.VISIBLE);
                 }
                 else
                 {
                     passInput.setTextColor(Color.parseColor("White"));
                     passInput.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_pass, 0, 0, 0);
+                    passError.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -85,6 +101,14 @@ public class MainActivity extends AppCompatActivity {
                     toMainIntent.putExtra("username", userNameInput.getText().toString());
                     startActivity(toMainIntent);
                 }
+                else if (!passValid)
+                {
+                    showKeyboard(passInput,MainActivity.this);
+                }
+                else
+                {
+                    showKeyboard(userNameInput,MainActivity.this);
+                }
             }
         });
 
@@ -95,9 +119,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        faceButton.setOnClickListener(new View.OnClickListener() {
+        resetPass.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Uri uri = Uri.parse("http://www.facebook.com");
+                Intent toRegisterIntent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(toRegisterIntent);
+            }
+        });
+
+        linkedinButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Uri uri = Uri.parse("https://www.linkedin.com/in/tolga-kalaycıoğlu-2abb39175/");
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }
@@ -105,15 +136,15 @@ public class MainActivity extends AppCompatActivity {
 
         instaButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Uri uri = Uri.parse("http://www.instagram.com");
+                Uri uri = Uri.parse("https://www.instagram.com/tolgak99");
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }
         });
 
-        googleButton.setOnClickListener(new View.OnClickListener() {
+        websiteButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Uri uri = Uri.parse("http://www.google.com");
+                Uri uri = Uri.parse("https://www.tolgakalaycioglu.com");
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }
@@ -135,6 +166,18 @@ public class MainActivity extends AppCompatActivity {
     {
         Matcher matcher = Pattern.compile("((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{4,20})").matcher(pass);
         return matcher.matches();
+    }
+
+    public static void showKeyboard(EditText mEtSearch, Context context) {
+        mEtSearch.requestFocus();
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+    }
+
+    public static void hideSoftKeyboard(EditText mEtSearch, Context context) {
+        mEtSearch.clearFocus();
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(mEtSearch.getWindowToken(), 0);
     }
 
 }

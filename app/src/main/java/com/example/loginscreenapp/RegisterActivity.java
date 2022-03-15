@@ -46,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (passValid && mailValid && passConfirmed) {
-                    Intent toMainIntent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    Intent toMainIntent = new Intent(RegisterActivity.this, MainActivity.class);
                     startActivity(toMainIntent);
                 }
             }
