@@ -54,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         mailInput.addTextChangedListener(new TextValidator(mailInput) {
             @Override public void validate(TextView textView, String text) {
-                mailValid = isMailValid(text);
+                mailValid = Validation.mailValidation(text);
 
                 if (!mailValid)
                 {
@@ -71,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         passInput.addTextChangedListener(new TextValidator(passInput) {
             @Override public void validate(TextView textView, String text) {
-                passValid = isPasswordValid(text);
+                passValid =  Validation.passwordValidation(text);
 
                 if (!passValid)
                 {
@@ -88,7 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         rePassInput.addTextChangedListener(new TextValidator(rePassInput) {
             @Override public void validate(TextView textView, String text) {
-                passConfirmed = isPasswordConfirmed(text);
+                passConfirmed =  Validation.passwordConfirmation(text,passInput.getText().toString());
 
                 if (!passConfirmed)
                 {
@@ -105,7 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         txtRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent toRegisterIntent = new Intent(RegisterActivity.this, MainActivity.class);
+                Intent toRegisterIntent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(toRegisterIntent);
             }
         });
@@ -117,24 +117,4 @@ public class RegisterActivity extends AppCompatActivity {
         getSupportActionBar().hide();
     }
 
-    boolean isMailValid(String mail)
-    {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches();
-    }
-
-    boolean isPasswordValid(String pass)
-    {
-        Matcher matcher = Pattern.compile("((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{4,20})").matcher(pass);
-        return matcher.matches();
-    }
-
-    boolean isPasswordConfirmed(String pass)
-    {
-        String passValue = passInput.getText().toString();
-
-        if (passValue.equals(pass)  && passValue != null)
-            return true;
-        else
-            return false;
-    }
 }
