@@ -9,6 +9,6 @@ This application simulates a Login Screen Design. It was implemented on Android 
 
 It includes email and password validation.
 
-__Download APK__ -> [LoginScreenApp]()
+__Download APK__ -> [LoginScreenApp](https://github.com/tolgak99/LoginScreenApp/blob/master/images/app-debug.apk?raw=true)
 
 <img src="images/loginAPKScreen.PNG" height = "500" >
